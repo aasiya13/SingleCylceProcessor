@@ -41,6 +41,18 @@ module reg_file(IN,OUT1,OUT2,clk,RESET,INaddr,OUT1addr,OUT2addr);
 	reg [7:0]temp,temp1;
 	
 	reg [7:0]registers[7:0]; 
+	// stores value to the registers 
+	initial begin
+		registers[3'b000] = 8'b0000_0000;
+		registers[3'b001] = 8'b0000_0001;
+		registers[3'b010] = 8'b0000_0010;
+		registers[3'b011] = 8'b0000_0011;
+		registers[3'b100] = 8'b0000_0100;
+		registers[3'b101] = 8'b0000_0101;
+		registers[3'b110] = 8'b0000_0110;
+		registers[3'b111] = 8'b0000_0111;
+		
+	end 
 	
 	always @(negedge clk)begin
 		registers[INaddr] = IN; 	// in negetive edges value in IN register stores registerFile at the location specify by the INaddr
@@ -50,10 +62,8 @@ module reg_file(IN,OUT1,OUT2,clk,RESET,INaddr,OUT1addr,OUT2addr);
 	end
 	
 	always @(posedge clk)begin
-		registers[OUT2addr] = 8'b1000_1000; // store value at the location OUT2addr
-		temp = registers[OUT2addr];
-		registers[OUT1addr] = 8'b1111_1000; // store value at the location OUT1addr
-		temp1 = registers[OUT1addr]; 
+		temp = registers[OUT1addr];
+		temp1 = registers[OUT2addr]; 
 		$display("positive edge");
 		$display("Value of INaddr : %b ", registers[INaddr]);
 	end
