@@ -19,7 +19,7 @@ module RegisterFile;
 	#5 OUT1addr = 3'b001; OUT2addr = 3'b000; INaddr = 3'b101; RESET = 1'b1; IN = 8'b1111_1111;  
 	 $monitor("Out 1 = %b Out 2 = %b OUT1addr = %b OUT2addr = %b IN = %b clock = %b \n",OUT1, OUT2, OUT1addr,OUT2addr,IN,clk);
 	
-	OUT1addr = 3'b001; OUT2addr = 3'b000; INaddr = 3'b101; RESET = 1'b1; IN = 8'b1111_0111; 
+	OUT1addr = 3'b001; OUT2addr = 3'b000; INaddr = 3'b101; RESET = 1'b1; IN = 8'b1011_0111; 
 	#10 $monitor("Out 1 = %b Out 2 = %b OUT1addr = %b OUT2addr = %b IN = %b clock = %b \n",OUT1, OUT2, OUT1addr,OUT2addr,IN,clk);
 		
 	OUT1addr = 3'b001; OUT2addr = 3'b000; INaddr = 3'b101; RESET = 1'b1; IN = 8'b0000_0111; 
@@ -53,7 +53,6 @@ module reg_file(IN,OUT1,OUT2,clk,RESET,INaddr,OUT1addr,OUT2addr);
 		registers[3'b101] = 8'b0000_0101;
 		registers[3'b110] = 8'b0000_0110;
 		registers[3'b111] = 8'b0000_0111;
-		
 	end 
 	
 	always @(negedge clk)begin
